@@ -12,7 +12,7 @@ const [...args] = process.argv;
 
 const projectName = args[2].toLowerCase();
 
-const projectsFolder = path.join(__dirname, '../../../Projects');
+const projectsFolder = path.join(__dirname, '../../.');
 
 const appFolder = path.join(projectsFolder, `./${projectName}`);
 

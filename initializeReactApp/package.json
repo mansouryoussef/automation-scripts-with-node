@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "env-cmd -f ./dev.env node ./cli.js"
 	},
-	"author": "",
+	"author": "Youssef Mansour",
 	"license": "ISC",
 	"bin": {
 		"create": "env-cmd -f ./dev.env ./cli.js"

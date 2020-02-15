@@ -10,6 +10,8 @@ const createGithubRepo = async projectName => {
 		();
 	const page = await browser.newPage();
 
+	console.log('Logging into github account..');
+
 	await page.goto('https://github.com/login', { waitUntil: 'networkidle0' });
 
 	await page.type('#login_field', username);
@@ -20,7 +22,11 @@ const createGithubRepo = async projectName => {
 
 	await page.waitForNavigation();
 
+	console.log('Logged in!');
+
 	await page.goto('https://github.com/new');
+
+	console.log('Creating new repo..');
 
 	await page.type('[name="repository[name]"]', projectName);
 
@@ -29,6 +35,8 @@ const createGithubRepo = async projectName => {
 	await page.keyboard.press('Enter');
 
 	await page.waitForNavigation();
+
+	console.log(`${projectName} repo created!`);
 
 	const addRemoteRepo = await page.evaluate(
 		() =>
