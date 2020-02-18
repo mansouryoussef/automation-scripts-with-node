@@ -1,0 +1,17 @@
+{
+	"name": "gradechecker",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "env-cmd -f .env node index.js",
+		"sendMail": "env-cmd -f .env node sendEmail.js"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"env-cmd": "^10.1.0",
+		"nodemailer": "^6.4.2",
+		"puppeteer": "^2.1.1"
+	}
+}
