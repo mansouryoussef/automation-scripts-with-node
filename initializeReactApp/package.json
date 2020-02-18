@@ -2,14 +2,14 @@
 	"name": "node",
 	"version": "1.0.0",
 	"description": "",
-	"main": "cli.js",
+	"main": "env-cmd -f ./dev.env ./index.js",
 	"scripts": {
-		"start": "env-cmd -f ./dev.env node ./cli.js"
+		"start": "env-cmd -f ./dev.env node ./index.js"
 	},
 	"author": "Youssef Mansour",
 	"license": "ISC",
 	"bin": {
-		"create": "env-cmd -f ./dev.env ./cli.js"
+		"create": "./index.js"
 	},
 	"dependencies": {
 		"env-cmd": "^10.1.0",
