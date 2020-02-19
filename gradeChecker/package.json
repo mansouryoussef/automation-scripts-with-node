@@ -4,12 +4,13 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"start": "env-cmd -f .env node index.js",
-		"sendMail": "env-cmd -f .env node sendEmail.js"
+		"start": "functions-framework --target=gradeChecker",
+		"dev": "env-cmd -f .env node ."
 	},
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"@google-cloud/functions-framework": "^1.4.0",
 		"env-cmd": "^10.1.0",
 		"nodemailer": "^6.4.2",
 		"puppeteer": "^2.1.1"
