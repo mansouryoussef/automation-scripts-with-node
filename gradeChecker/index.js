@@ -1,29 +1,41 @@
-const fs = require('fs');
-
+const connect = require('./config/db');
 const scraper = require('./utils/scraper');
 const sendEmail = require('./utils/sendEmail');
 const compareCoursesByGrade = require('./utils/compareCoursesByGrade');
+const { getAllCourses, updateDatabase } = require('./utils/mongoDB');
 const createHTMLFromCoursesArray = require('./utils/createHTMLFromCoursesArray');
-const courseInfo = JSON.parse(fs.readFileSync('courseInfo.json', 'utf8'));
-const createJSONFile = require('./utils/createJSONFile');
 
-exports.gradeChecker = () =>
-	scraper().then(async courseData => {
-		const changedCourses = compareCoursesByGrade(courseData, courseInfo);
+(async () => {
+	await connect();
 
-		if (changedCourses.length !== 0) {
-			console.log('There is an update!');
+	const vamkCourseData = await scraper();
+	const coursesInDatabase = await getAllCourses();
 
-			const mail = {
-				from: 'hello@youssef.fi',
-				to: 'contact@youssef.fi',
-				subject: 'Course update!',
-				html: createHTMLFromCoursesArray(changedCourses)
-			};
+	// Remove total credits from vamkCourseData array & save it in a variable.
+	const totalCredits = vamkCourseData.shift().totalCr;
 
-			createJSONFile('courseInfo', courseData);
+	const changedCourses = compareCoursesByGrade(
+		vamkCourseData,
+		coursesInDatabase
+	);
 
-			await sendEmail(mail);
-		}
-		process.exit();
-	});
+	if (changedCourses.length !== 0) {
+		console.log('There is an update!');
+
+		await updateDatabase(changedCourses);
+
+		const mail = {
+			from: 'hello@youssef.fi',
+			to: 'contact@youssef.fi',
+			subject: 'Course update!',
+			html: createHTMLFromCoursesArray(changedCourses)
+		};
+
+		await sendEmail(mail);
+	} else {
+		console.log(`No change in coures!
+Current cr count: ${totalCredits}`);
+	}
+
+	process.exit();
+})();

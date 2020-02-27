@@ -5,13 +5,16 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "functions-framework --target=gradeChecker",
-		"dev": "env-cmd -f .env node ."
+		"dev": "env-cmd -f ./config/.env node .",
+		"testDB": "env-cmd -f ./config/.env node test.js"
 	},
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
 		"@google-cloud/functions-framework": "^1.4.0",
+		"axios": "^0.19.2",
 		"env-cmd": "^10.1.0",
+		"mongoose": "^5.9.2",
 		"nodemailer": "^6.4.2",
 		"puppeteer": "^2.1.1"
 	}

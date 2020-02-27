@@ -1,6 +1,4 @@
 const puppeteer = require('puppeteer');
-const fs = require('fs');
-const createJSONFile = require('./createJSONFile');
 
 module.exports = async () => {
 	const browser = await puppeteer.launch({
@@ -63,8 +61,6 @@ module.exports = async () => {
 		});
 		return data;
 	});
-
-	// createJSONFile('courseInfo', data);
 
 	console.log('Got the data!');
 

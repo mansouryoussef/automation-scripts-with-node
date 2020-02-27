@@ -16,6 +16,8 @@ const mailserver = {
 module.exports = sendMail = async mail => {
 	const transporter = nodemailer.createTransport(mailserver);
 
+	console.log('Sending email..');
+
 	await transporter.sendMail(mail);
 
 	console.log('Email sent!');
