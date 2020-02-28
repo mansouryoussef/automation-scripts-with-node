@@ -13,6 +13,7 @@
 	"dependencies": {
 		"@google-cloud/functions-framework": "^1.4.0",
 		"axios": "^0.19.2",
+		"cron": "^1.8.2",
 		"env-cmd": "^10.1.0",
 		"mongoose": "^5.9.2",
 		"nodemailer": "^6.4.2",
