@@ -16,7 +16,7 @@
 		"cron": "^1.8.2",
 		"env-cmd": "^10.1.0",
 		"mongoose": "^5.9.2",
-		"nodemailer": "^6.4.2",
+		"nodemailer": "^6.4.16",
 		"puppeteer": "^2.1.1"
 	}
 }
